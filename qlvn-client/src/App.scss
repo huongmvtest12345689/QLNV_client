@@ -1,0 +1,67 @@
+.p-toast.p-toast-topright {
+  top: 114px;
+}
+
+.p-datatable-responsive .p-datatable-tbody > tr > td .p-column-title {
+  display: none;
+}
+
+@media screen and (max-width: 40em) {
+  .p-datatable-responsive .p-datatable-tfoot > tr > td, .p-datatable-responsive .p-datatable-thead > tr > th {
+    display: none !important;
+  }
+
+  .p-datatable-responsive .p-datatable-tbody > tr > td {
+    text-align: left;
+    display: block;
+    border: 0 none !important;
+    width: 100% !important;
+    float: left;
+    clear: left;
+  }
+
+  .p-datatable-responsive .p-datatable-tbody > tr > td .p-column-title {
+    padding: .4em;
+    min-width: 30%;
+    display: inline-block;
+    margin: -.4em 1em -.4em -.4em;
+    font-weight: 700;
+  }
+}
+
+.p-link:focus {
+  outline: unset !important;
+}
+
+body .p-tabview.p-tabview-top .p-tabview-nav li a:focus, body .p-tabview.p-tabview-bottom .p-tabview-nav li a:focus, body .p-tabview.p-tabview-left .p-tabview-nav li a:focus, body .p-tabview.p-tabview-right .p-tabview-nav li a:focus {
+  outline: 0 none !important;
+  -webkit-box-shadow: none !important;
+  -moz-box-shadow: none !important;
+  box-shadow: none !important;
+}
+
+body .p-tabview.p-tabview-top .p-tabview-nav li a, body .p-tabview.p-tabview-bottom .p-tabview-nav li a, body .p-tabview.p-tabview-left .p-tabview-nav li a, body .p-tabview.p-tabview-right .p-tabview-nav li a {
+  border: none;
+  background-color: unset;
+}
+
+body .p-tabview.p-tabview-top .p-tabview-nav li:not(.p-highlight):not(.p-disabled):hover a, body .p-tabview.p-tabview-bottom .p-tabview-nav li:not(.p-highlight):not(.p-disabled):hover a, body .p-tabview.p-tabview-left .p-tabview-nav li:not(.p-highlight):not(.p-disabled):hover a, body .p-tabview.p-tabview-right .p-tabview-nav li:not(.p-highlight):not(.p-disabled):hover a {
+    border: none;
+    background-color: unset;
+}
+body .p-tabview.p-tabview-top .p-tabview-nav li.p-highlight a, body .p-tabview.p-tabview-bottom .p-tabview-nav li.p-highlight a, body .p-tabview.p-tabview-left .p-tabview-nav li.p-highlight a, body .p-tabview.p-tabview-right .p-tabview-nav li.p-highlight a{
+    border: none;
+    background-color: unset;
+}
+
+body .p-tabview.p-tabview-top .p-tabview-nav li.p-highlight:hover a, body .p-tabview.p-tabview-bottom .p-tabview-nav li.p-highlight:hover a, body .p-tabview.p-tabview-left .p-tabview-nav li.p-highlight:hover a, body .p-tabview.p-tabview-right .p-tabview-nav li.p-highlight:hover a{
+    border: none;
+    background-color: unset;
+}
+body .p-link:focus{
+  box-shadow: none !important;
+}
+
+body .p-datatable .p-datatable-tbody > tr:focus > td {
+  box-shadow: none !important;
+}
