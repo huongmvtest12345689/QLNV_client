@@ -1,6 +1,7 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
 import Dashboard from "../components/dashboard/Dashboard";
+import localStorageService from '@/services/common/localStorage.service'
 
 Vue.use(VueRouter)
 
@@ -21,19 +22,18 @@ const router = new VueRouter({
   }
 })
 
-// khi nao lam login se lam o day
 router.beforeEach((to, from, next) => {
-  // const publicPages = ['/login', '/error', '/access', '/notfound'];
-  // const authRequired = !publicPages.includes(to.path.toLowerCase());
-  // const loggedIn = !!JwtService.getToken();
-  //
-  // if (authRequired && !loggedIn) {
-  //   return next('/login');
-  // }
-  //
-  // if(to.path === '/login' && loggedIn){
-  //   return next('/')
-  // }
+  const publicPages = ['/login', '/error', '/access', '/notfound'];
+  const authRequired = !publicPages.includes(to.path.toLowerCase());
+  const loggedIn = !!localStorageService.getToken();
+
+  if (authRequired && !loggedIn) {
+    return next('/login');
+  }
+
+  if(to.path === '/login' && loggedIn){
+    return next('/')
+  }
 
   next();
 })

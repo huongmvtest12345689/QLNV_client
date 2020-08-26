@@ -10,7 +10,7 @@
                 <i class="pi pi-bars"></i>
             </button>
 
-            <router-link to="/" class="p-link layout-topbar-logo">
+            <router-link to="/" class="p-link layout-topbar-logo" style="margin-top: 4px">
                 <img id="topbar-logo" src="@/assets/img/logo.png" alt="roma-vue"/>
             </router-link>
 

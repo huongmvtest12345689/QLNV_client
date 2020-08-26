@@ -5,3 +5,6 @@
  Version: 1.0
  Author: HuongMV
  ======================================================================================= */
+export default Object.freeze({
+    apiUrl: 'http://localhost:8088/api'
+})
