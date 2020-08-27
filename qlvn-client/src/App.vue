@@ -8,7 +8,7 @@
             <AppTopBar :topbarMenuActive="topbarMenuActive" :activeTopbarItem="activeTopbarItem" :inlineUser="inlineUser"
                        @right-menubutton-click="onRightMenuButtonClick"
                        @menubutton-click="onMenuButtonClick" @topbar-menubutton-click="onTopbarMenuButtonClick"
-                       @topbar-item-click="onTopbarItemClick" @logout="logout"></AppTopBar>
+                       @topbar-item-click="onTopbarItemClick" @logout="doLogout"></AppTopBar>
 
             <AppRightMenu :rightPanelMenuActive="rightPanelMenuActive" @rightmenu-click="onRightMenuClick"></AppRightMenu>
 
@@ -20,7 +20,7 @@
                                     @click="onInlineUserClick">
                                 <img src="/assets/layout/images/avatar.png" alt="roma-layout"/>
                                 <span class="layout-profile-userinfo">
-							<span class="layout-profile-name">This is name</span>
+							<span class="layout-profile-name">{{user.firstName + ' ' + user.lastName}}</span>
 							<span class="layout-profile-role">Here is role</span>
 						</span>
                             </button>
@@ -48,7 +48,7 @@
                                         </button>
                                     </li>
                                     <li role="menuitem">
-                                        <button class="p-link" @click="logout">
+                                        <button class="p-link" @click="doLogout">
                                             <i class="pi pi-fw pi-sign-out"></i>
                                             <span>Logout</span>
                                         </button>
@@ -92,6 +92,7 @@
     import Loading from 'vue-loading-overlay';
     // Import stylesheet
     import 'vue-loading-overlay/dist/vue-loading.css';
+    import {mapState, mapActions} from 'vuex'
     export default {
         data() {
             return {
@@ -232,6 +233,7 @@
             }
         },
         methods: {
+            ...mapActions('account', ['logout']),
             onDocumentClick() {
                 if (!this.topbarItemClick) {
                     this.activeTopbarItem = null;
@@ -444,12 +446,14 @@
                 else
                     element.className = element.className.replace(new RegExp('(^|\\b)' + className.split(' ').join('|') + '(\\b|$)', 'gi'), ' ');
             },
-            logout() {
-                localStorageService.destroyAll();
-                this.$router.push({path: '/login'})
+            doLogout() {
+                this.logout().then(() => {
+                    this.$router.push({path: '/login'})
+                })
             }
         },
         computed: {
+            ...mapState('account', ['user']),
             containerClass() {
                 return ['layout-wrapper', {
                     'layout-horizontal': this.layoutMode === 'horizontal',

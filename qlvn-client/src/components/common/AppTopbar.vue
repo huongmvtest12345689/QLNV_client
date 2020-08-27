@@ -25,7 +25,7 @@
                             @click="$emit('topbar-item-click',{originalEvent:$event,item:'profile'})">
                         <img src="/assets/layout/images/avatar.png" alt="roma-layout"/>
                         <div class="layout-profile-userinfo">
-                            <span class="layout-profile-name">This is name</span>
+                            <span class="layout-profile-name">{{user.firstName + ' ' + user.lastName}}</span>
                             <span class="layout-profile-role">Here is role</span>
                         </div>
                     </button>
@@ -100,11 +100,15 @@
 </template>
 
 <script>
+    import {mapState} from 'vuex'
     export default {
         props: {
             topbarMenuActive: Boolean,
             activeTopbarItem: String,
             inlineUser: Boolean,
+        },
+        computed: {
+            ...mapState('account', ['user']),
         },
         methods: {
             onMenuButtonClick(event) {

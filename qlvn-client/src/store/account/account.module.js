@@ -6,12 +6,12 @@ const state = {
 }
 
 const actions = {
-    login({commit}, {username, password}) {
+    // eslint-disable-next-line no-unused-vars
+    login({commit},{username, password}) {
         return new Promise((resolve, reject) => {
             userService.login(username, password)
                 .then(
-                    user => {
-                        commit('loginSuccess', user);
+                    () => {
                         resolve()
                     },
                     error => {
@@ -19,11 +19,21 @@ const actions = {
                     }
                 );
         })
-
     },
-    logout({commit}) {
-        userService.logout();
-        commit('logout');
+    logout() {
+        return new Promise(resolve => {
+            userService.logout()
+                .then(
+                    () => {
+                        resolve()
+                    }
+                );
+        })
+    },
+    getUser({commit}) {
+        userService.getByToken().then(user => {
+            commit('loginSuccess', user)
+        })
     }
 };
 
@@ -31,9 +41,6 @@ const mutations = {
     loginSuccess(state, user) {
         state.user = user;
     },
-    logout(state) {
-        state.status = {};
-    }
 };
 
 const getters = {

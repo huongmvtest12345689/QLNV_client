@@ -25,7 +25,7 @@ function login(username, password) {
         method: 'POST',
         headers: {'Content-Type': 'application/json'},
         data: {
-            'username' : username,
+            'account' : username,
             'password' : password
         },
         url: `${config.apiUrl}/user/login`
@@ -38,8 +38,15 @@ function login(username, password) {
 }
 
 function logout() {
-    // remove user from local storage to log user out
-    localStorageService.destroyAll()
+    const requestOptions = {
+        method: 'GET',
+        headers: authHeader(),
+        url: `${config.apiUrl}/user/logout`
+    };
+    return axios(requestOptions).then(() =>{
+        localStorageService.destroyAll()
+    }).catch(handleError);
+
 }
 
 
@@ -49,7 +56,10 @@ function getByToken() {
         headers: authHeader(),
         url: `${config.apiUrl}/user/get-user`
     };
-    return axios(requestOptions).then(handleResponse).catch(handleError);
+    return axios(requestOptions).then((response) =>{
+        localStorageService.saveUser(response.data.data);
+        return response.data.data
+    }).catch(handleError);
 }
 
 function changePassword(obj) {

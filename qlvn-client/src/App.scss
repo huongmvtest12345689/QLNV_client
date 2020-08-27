@@ -40,6 +40,10 @@ body .p-tabview.p-tabview-top .p-tabview-nav li a:focus, body .p-tabview.p-tabvi
   box-shadow: none !important;
 }
 
+.layout-wrapper .layout-menu-container .layout-menu li a:focus {
+  box-shadow: unset !important;
+}
+
 body .p-tabview.p-tabview-top .p-tabview-nav li a, body .p-tabview.p-tabview-bottom .p-tabview-nav li a, body .p-tabview.p-tabview-left .p-tabview-nav li a, body .p-tabview.p-tabview-right .p-tabview-nav li a {
   border: none;
   background-color: unset;

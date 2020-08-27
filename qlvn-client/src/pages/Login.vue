@@ -11,7 +11,7 @@
 
                 <div class="inputs">
                     <input type="text" placeholder="username or email" v-model="username">
-                    <input type="password" placeholder="password" v-model="password">
+                    <input type="password" placeholder="password" v-model="password" v-on:keyup.enter="doLogin">
 
                     <p class="light"><a href="#" @click="display = true">Forgot password?</a></p>
                 </div>
@@ -19,10 +19,10 @@
             </form>
 
             <footer>
-                <button style="cursor: pointer" @click="doLogin">Login</button>
+                <Button label="Login" @click="doLogin"/>
             </footer>
         </div>
-        <Dialog header="Forgot Password" :visible.sync="display" :style="{width: '30vw'}" :position="'top'">
+        <Dialog header="Forgot Password" :visible.sync="display" :style="{width: '30vw'}" :position="'bottom'">
             <div class="p-fluid">
                 <div class="p-field p-grid">
                     <label for="email" class="p-col-fixed" style="width:80px; display: flex; align-items: center">Email</label>
@@ -53,7 +53,7 @@
             }
         },
         methods: {
-            ...mapActions('account', ['login', 'logout']),
+            ...mapActions('account', ['login', 'getUser']),
             doLogin() {
                 let {username, password} = this;
                 if (!username)
@@ -71,7 +71,11 @@
                         life: 3000
                     });
                 if (username && password)
-                    this.login({username, password}).then(() => this.$router.push("/"))
+                    this.login({username, password})
+                        .then(() => {
+                            this.getUser();
+                            this.$router.push("/");
+                        })
                         .catch(res => {
                             this.$toast.add({severity: 'error', summary: 'Error Message', detail: res, life: 3000})
                         })
@@ -199,7 +203,7 @@
         text-align: center;
     }
 
-    .radial-gradient button {
+    .radial-gradient .button {
         width: 100%;
         padding: 13px 15px;
         border-radius: 100px;
@@ -229,7 +233,7 @@
         .inputs {
             margin: 0;
         }
-        input, button {
+        input, .button {
             padding: 18px 15px;
         }
     }
