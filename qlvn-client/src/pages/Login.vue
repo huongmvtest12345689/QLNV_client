@@ -57,7 +57,8 @@
                 username: '',
                 password: '',
                 display: false,
-                email: ''
+                email: '',
+
             }
         },
         methods: {

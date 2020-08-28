@@ -5,6 +5,7 @@ import {store} from './store'
 /** Global Components */
 import './global.js'
 import './primeVue'
+import './formly'
 import Login from "./pages/Login";
 import Access from "./pages/Access";
 import NotFound from "./pages/NotFound";
