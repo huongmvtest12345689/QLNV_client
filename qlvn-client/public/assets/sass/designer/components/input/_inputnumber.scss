@@ -1,0 +1,3 @@
+.p-inputnumber.p-error > .p-inputtext, .p-inputnumber.p-invalid > .p-inputtext {
+  border-color: $errorColor;
+}

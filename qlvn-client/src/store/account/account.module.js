@@ -34,6 +34,20 @@ const actions = {
         userService.getByToken().then(user => {
             commit('loginSuccess', user)
         })
+    },
+    // eslint-disable-next-line no-unused-vars
+    changePassword({commit}, data) {
+        return new Promise((resolve,reject) => {
+            userService.changePassword(data)
+                .then(
+                    () => {
+                        resolve()
+                    },
+                    error => {
+                        reject(error)
+                    }
+                );
+        })
     }
 };
 

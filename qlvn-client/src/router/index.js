@@ -9,6 +9,7 @@ Vue.use(VueRouter)
     {
       path: '/',
       name: 'Dashboard',
+      exact: true,
       component: Dashboard
     },
 ]

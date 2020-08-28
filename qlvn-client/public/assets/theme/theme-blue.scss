@@ -1,11 +1,6 @@
-$color1: #2ed7e4;
-$color2: #0f97c7;
-$color3: #33bef0;
-$color4: #62cdf3;
-$color5: #c1ebfa;
-$color6: #92dcf7;
-$color7: #0772b3;
-$color8: #024f9e;
-$color9: #1cb9d7;
+$primaryColor:#1E88E5;
+$primaryTextColor:#ffffff;
+$accentColor:#FFB300;
+$accentTextColor: #212121;
 
-@import "../../sass/theme/theme";
+@import '../sass/theme/_theme';

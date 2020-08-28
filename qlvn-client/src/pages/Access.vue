@@ -1,27 +1,30 @@
 <template>
     <div class="exception-body accessdenied">
         <div class="exception-panel">
-            <div class="exception-content">
-                <img src="/assets/layout/images/pages/icon-access.svg" alt="roma"/>
-                <h1>Access Denied</h1>
-                <p>You do not have the necessary permissons.</p>
+            <div class="exception-image">
+                <img src="assets/layout/images/exception/icon-access.png" alt="sapphire"/>
+            </div>
 
-                <Button label="Go To Dashboard" icon="pi pi-arrow-left" @click="goDashboard" />
+            <div class="exception-detail">
+                <h1>ACCESS DENIED</h1>
+                <p>You do not have the necessary permissons.</p>
+                <Button label="GO TO DASHBOARD" @click="goDashboard" />
             </div>
         </div>
     </div>
 </template>
 
 <script>
+    import './moveGradient'
     export default {
         methods: {
             goDashboard(){
-                this.$router.push({ path: '/' });
+                window.location = "/#/"
             }
         }
     }
 </script>
 
 <style scoped>
-    @import '../App.scss';
+
 </style>

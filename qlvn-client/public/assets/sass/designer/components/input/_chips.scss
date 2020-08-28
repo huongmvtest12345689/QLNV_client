@@ -1,0 +1,35 @@
+.p-chips .p-chips-multiple-container {
+  padding: 0.5rem 1rem;
+}
+.p-chips .p-chips-multiple-container:not(.p-disabled):hover {
+  border-color: #000001;
+}
+.p-chips .p-chips-multiple-container:not(.p-disabled).p-focus {
+  outline: 0 none;
+  outline-offset: 0;
+  box-shadow: none;
+  border-color: $primaryColor;
+}
+.p-chips .p-chips-multiple-container .p-chips-token {
+  padding: 0.5rem 1rem;
+  margin-right: 0.5rem;
+  background: rgba(255, 179, 0, 0.12);
+  color: $primaryColor;
+  border-radius: 4px;
+}
+.p-chips .p-chips-multiple-container .p-chips-token .p-chips-token-icon {
+  margin-left: 0.5rem;
+}
+.p-chips .p-chips-multiple-container .p-chips-input-token {
+  padding: 0.5rem 0;
+}
+.p-chips .p-chips-multiple-container .p-chips-input-token input {
+  font-family: Roboto, Helvetica Neue Light, Helvetica Neue, Helvetica, Arial, Lucida Grande, sans-serif;
+  font-size: 1rem;
+  color: #000001;
+  padding: 0;
+  margin: 0;
+}
+.p-chips.p-error > .p-inputtext, .p-chips.p-invalid > .p-inputtext {
+  border-color: $errorColor;
+}

@@ -1,26 +1,30 @@
 <template>
     <div class="exception-body notfound">
         <div class="exception-panel">
-            <div class="exception-content">
-                <img src="/assets/layout/images/pages/icon-404.svg" alt="roma"/>
-                <h1>Page Not Found</h1>
-                <p>Requested resource is not available.</p>
+            <div class="exception-image">
+                <img src="assets/layout/images/exception/icon-404.png" alt="sapphire"/>
+            </div>
 
-                <Button label="Go To Dashboard" icon="pi pi-arrow-left" @click="goDashboard" />
+            <div class="exception-detail">
+                <h1>PAGE NOT FOUND</h1>
+                <p>Requested resource is not available.</p>
+                <Button label="GO TO DASHBOARD" @click="goDashboard" />
             </div>
         </div>
     </div>
 </template>
+
 <script>
+    import './moveGradient'
     export default {
         methods: {
             goDashboard(){
-                this.$router.push({ path: '/' });
+                window.location = "/#/"
             }
         }
     }
 </script>
 
 <style scoped>
-    @import '../App.scss';
+
 </style>

@@ -1,10 +1,6 @@
-$color1: #D7E73F;
-$color2: #A5B600;
-$color3: #e8ff04;
-$color4: #ecff37;
-$color5: #f6ff9d;
-$color6: #f1ff6a;
-$color7: #677200;
-$color8: #424900;
-$color9: #C0D300;
-@import "../../sass/layout/layout";
+$primaryColor:#C0CA33;
+$primaryTextColor:#ffffff;
+$accentColor:#E91E63;
+$accentTextColor:#ffffff;
+
+@import '../../sass/layout/_layout';

@@ -5,7 +5,6 @@ import {store} from './store'
 /** Global Components */
 import './global.js'
 import './primeVue'
-Vue.config.productionTip = false
 import Login from "./pages/Login";
 import Access from "./pages/Access";
 import NotFound from "./pages/NotFound";

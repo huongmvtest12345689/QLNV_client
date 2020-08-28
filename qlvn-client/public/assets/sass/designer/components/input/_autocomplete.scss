@@ -1,0 +1,69 @@
+.p-autocomplete .p-autocomplete-loader {
+  right: $fontSize;
+}
+.p-autocomplete.p-autocomplete-dd .p-autocomplete-loader {
+  right: 4rem;
+}
+.p-autocomplete.p-autocomplete-multiple .p-autocomplete-multiple-container {
+  padding: 0.5rem 1rem;
+}
+.p-autocomplete.p-autocomplete-multiple .p-autocomplete-multiple-container:not(.p-disabled):hover {
+  border-color: #000001;
+}
+.p-autocomplete.p-autocomplete-multiple .p-autocomplete-multiple-container:not(.p-disabled).p-focus {
+  outline: 0 none;
+  outline-offset: 0;
+  box-shadow: none;
+  border-color: $primaryColor;
+}
+.p-autocomplete.p-autocomplete-multiple .p-autocomplete-multiple-container .p-autocomplete-input-token {
+  padding: 0.5rem 0;
+}
+.p-autocomplete.p-autocomplete-multiple .p-autocomplete-multiple-container .p-autocomplete-input-token input {
+  font-family: Roboto, Helvetica Neue Light, Helvetica Neue, Helvetica, Arial, Lucida Grande, sans-serif;
+  font-size: 1rem;
+  color: #000001;
+  padding: 0;
+  margin: 0;
+}
+.p-autocomplete.p-autocomplete-multiple .p-autocomplete-multiple-container .p-autocomplete-token {
+  padding: 0.5rem 1rem;
+  margin-right: 0.5rem;
+  background: rgba(255, 179, 0, 0.12);
+  color: $primaryColor;
+  border-radius: 4px;
+}
+.p-autocomplete.p-autocomplete-multiple .p-autocomplete-multiple-container .p-autocomplete-token .p-autocomplete-token-icon {
+  margin-left: 0.5rem;
+}
+.p-autocomplete.p-error > .p-inputtext, .p-autocomplete.p-invalid > .p-inputtext {
+  border-color: $errorColor;
+}
+
+.p-autocomplete-panel {
+  background: $accentTextColor;
+  color: #000001;
+  border: 0 none;
+  border-radius: $borderRadius;
+  box-shadow: $inputOverlayShadow;
+}
+.p-autocomplete-panel .p-autocomplete-items {
+  padding: 0;
+}
+.p-autocomplete-panel .p-autocomplete-items .p-autocomplete-item {
+  margin: 0;
+  padding: 1rem 1rem;
+  border: 0 none;
+  color: #000001;
+  background: transparent;
+  transition: none;
+  border-radius: 0;
+}
+.p-autocomplete-panel .p-autocomplete-items .p-autocomplete-item:hover {
+  color: #000001;
+  background: $inputListItemHoverBg;
+}
+.p-autocomplete-panel .p-autocomplete-items .p-autocomplete-item.p-highlight {
+  color: $primaryColor;
+  background: rgba(255, 179, 0, 0.12);
+}

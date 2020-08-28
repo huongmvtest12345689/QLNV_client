@@ -1,0 +1,91 @@
+.p-inputtext {
+  font-family: $fontFamily;
+  font-size: $inputTextFontSize;
+  color: #000001 !important;
+  background: #ffffff;
+  padding: $inputPadding;
+  border: 1px solid $emphasis-low;
+  transition: $formElementTransition;
+  appearance: none;
+  border-radius: 4px;
+}
+.p-inputtext:enabled:hover {
+  border-color: #000001;
+}
+.p-inputtext:enabled:focus {
+  outline: $focusOutline;
+  outline-offset: $focusOutlineOffset;
+  box-shadow: $focusShadow;
+  border-color: $primaryColor;
+}
+.p-inputtext.p-error, .p-inputtext.p-invalid {
+  border-color: $errorColor;
+}
+.p-inputtext.p-inputtext-sm {
+  font-size: $menuitemSubmenuIconFontSize;
+  padding: $menuitemSubmenuIconFontSize $menuitemSubmenuIconFontSize;
+}
+.p-inputtext.p-inputtext-lg {
+  font-size: 1.25rem;
+  padding: 1.25rem 1.25rem;
+}
+
+.p-float-label > label {
+  left: $fontSize;
+  color: $textSecondaryColor;
+  transition-duration: $transitionDuration;
+}
+
+.p-input-icon-left > i:first-of-type {
+  left: $fontSize;
+  color: $textSecondaryColor;
+}
+
+.p-input-icon-left > .p-inputtext {
+  padding-left: 3rem;
+}
+
+.p-input-icon-right > i:last-of-type {
+  right: $fontSize;
+  color: $textSecondaryColor;
+}
+
+.p-input-icon-right > .p-inputtext {
+  /* padding-right: 3rem; */
+}
+
+::-webkit-input-placeholder {
+  color: $textSecondaryColor;
+}
+
+:-moz-placeholder {
+  color: $textSecondaryColor;
+}
+
+::-moz-placeholder {
+  color: $textSecondaryColor;
+}
+
+:-ms-input-placeholder {
+  color: $textSecondaryColor;
+}
+
+.p-input-filled .p-inputtext {
+  background-color: $inputFilledBg;
+}
+.p-input-filled .p-inputtext:enabled:hover {
+  background-color: $inputFilledHoverBg;
+}
+.p-input-filled .p-inputtext:enabled:focus {
+  background-color: $inputFilledFocusBg;
+}
+
+.p-inputtext-sm .p-inputtext {
+  font-size: $menuitemSubmenuIconFontSize;
+  padding: $menuitemSubmenuIconFontSize $menuitemSubmenuIconFontSize;
+}
+
+.p-inputtext-lg .p-inputtext {
+  font-size: 1.25rem;
+  padding: 1.25rem 1.25rem;
+}
