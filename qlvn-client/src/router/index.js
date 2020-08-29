@@ -14,7 +14,12 @@ Vue.use(VueRouter)
           path: '/hrmHome',
           name: 'hrmHome',
           component: () => import('../views/admin/home/Home'),
-        }
+        },
+        {
+          path: '/admin/userList',
+          name: 'userList',
+          component: () => import('../views/admin/user/User'),
+        },
       ]
     },
     {
