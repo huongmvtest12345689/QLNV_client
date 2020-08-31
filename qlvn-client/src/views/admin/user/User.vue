@@ -1,7 +1,6 @@
 <template>
   <div>
-    <Toast />
-    <Toast position="top-right" />
+    <p>{{ $t('message.hello') }}</p>
     <div class="title-user-home text-left">
       <h1 class="h3 mb-2 text-gray-800">Danh sách nhân viên</h1>
       <p class="mb-4">Thông tin danh sách các nhân viên.</p>
@@ -59,16 +58,26 @@
       return {
         userList: null,
         data: [
-          {"name": "Volkswagen", "email": 2012, "roles_name": "Orange", "phone": "dsad231ff"},
-          {"name": "Audi", "email": 2011, "roles_name": "Black", "phone": "gwregre345"},
-          {"name": "Renault", "email": 2005, "roles_name": "Gray", "phone": "h354htr"},
-          {"name": "BMW", "email": 2003, "roles_name": "Blue", "phone": "j6w54qgh"},
-          {"name": "Mercedes", "email": 1995, "roles_name": "phone", "vin": "hrtwy34"},
-          {"name": "Volvo", "email": 2005, "roles_name": "Black", "phone": "jejtyj"},
-          {"name": "Honda", "email": 2012, "roles_name": "Yellow", "phone": "g43gr"},
+          {"name": "121212", "email": 2012, "roles_name": "Orange", "phone": "dsad231ff"},
+          {"name": "đâsd", "email": 2011, "roles_name": "Black", "phone": "gwregre345"},
+          {"name": "Rezxczxcnault", "email": 2005, "roles_name": "Gray", "phone": "h354htr"},
+          {"name": "ádasda", "email": 2003, "roles_name": "Blue", "phone": "j6w54qgh"},
+          {"name": "Merzxczxcedes", "email": 1995, "roles_name": "phone", "vin": "hrtwy34"},
+          {"name": "Vozxczxzlvo", "email": 2005, "roles_name": "Black", "phone": "jejtyj"},
+          {"name": "Hzxczconda", "email": 2012, "roles_name": "Yellow", "phone": "g43gr"},
           {"name": "Jaguar", "email": 2013, "roles_name": "Orange", "phone": "greg34"},
           {"name": "Ford", "email": 2000, "roles_name": "Black", "phone": "h54hw5"},
-          {"name": "Fiat", "email": 2013, "roles_name": "Red", "phone": "245t2s"}
+          {"name": "Fiat", "email": 2013, "roles_name": "Red", "phone": "245t2s"},
+          {"name": "Volkswagen", "email": 2012, "roles_name": "Orange", "phone": "dsad231ff"},
+          {"name": "cxczxc", "email": 2011, "roles_name": "Black", "phone": "gwregre345"},
+          {"name": "zxczxc", "email": 2005, "roles_name": "Gray", "phone": "h354htr"},
+          {"name": "BMW", "email": 2003, "roles_name": "Blue", "phone": "j6w54qgh"},
+          {"name": "czxczxc", "email": 1995, "roles_name": "phone", "vin": "hrtwy34"},
+          {"name": "Volvo", "email": 2005, "roles_name": "Black", "phone": "jejtyj"},
+          {"name": "zxczx", "email": 2012, "roles_name": "Yellow", "phone": "g43gr"},
+          {"name": "Jaguar", "email": 2013, "roles_name": "Orange", "phone": "greg34"},
+          {"name": "Fozxczxcrd", "email": 2000, "roles_name": "Black", "phone": "h54hw5"},
+          {"name": "Fiazxczxct", "email": 2013, "roles_name": "Red", "phone": "245t2s"}
         ],
         files: [],
         filename: '',

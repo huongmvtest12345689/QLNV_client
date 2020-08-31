@@ -6,6 +6,7 @@
         <!-- Nav Header -->
         <div class="navbar-header">
             <a class="navbar-brand" href="#"><span class="fa fa-home"></span><span class="link"> Home</span></a>
+            <country-dropdown></country-dropdown>
         </div>
         <!-- Nav Collapse -->
         <div class="navbar-collapse collapse" id="collapse-1">
@@ -216,3 +217,11 @@
     </nav>
     <!-- End of Topbar -->
 </template>
+<script>
+import country from '../../components/country/country'
+export default {
+    components: {
+        'country-dropdown': country
+    }
+}
+</script>

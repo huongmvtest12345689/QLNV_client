@@ -14,6 +14,7 @@ import Fieldset from 'primevue/fieldset';
 
 /** Global Components */
 import './global.js'
+import i18n from './i18n.js'
 Vue.config.productionTip = false
 Vue.component('DataTable', DataTable);
 Vue.component('Column', Column);
@@ -27,5 +28,6 @@ Vue.use(ToastService);
 new Vue({
   router,
   store,
+  i18n,
   render: h => h(App)
 }).$mount('#app')
