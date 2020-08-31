@@ -6,12 +6,12 @@
         <!-- Nav Header -->
         <div class="navbar-header">
             <a class="navbar-brand" href="#"><span class="fa fa-home"></span><span class="link"> Home</span></a>
-            <country-dropdown></country-dropdown>
         </div>
         <!-- Nav Collapse -->
         <div class="navbar-collapse collapse" id="collapse-1">
             <!-- Nav Left -->
             <ul class="nav navbar-nav">
+                            <country-dropdown></country-dropdown>
                 <!--&lt;!&ndash; Products &ndash;&gt;-->
                 <!--<li class="dropdown">-->
                     <!--<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">-->
