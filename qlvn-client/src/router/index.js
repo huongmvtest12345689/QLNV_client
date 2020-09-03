@@ -14,9 +14,15 @@ Vue.use(VueRouter)
         path: '/hrmHome',
         name: 'hrmHome',
         component: () => import('../views/admin/home/Home'),
+      },
+      {
+        path:'/register',
+        name: 'register',
+        component: ()=> import('../views/admin/register/Register'),
       }
     ]
-  }
+  },
+  
 ]
 
 const router = new VueRouter({
