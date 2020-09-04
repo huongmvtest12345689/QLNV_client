@@ -5,24 +5,33 @@ import HomeHRM from '../views/admin/Index'
 Vue.use(VueRouter)
 
   const routes = [
-  {
-    path: '',
-    name: 'HomeHRM',
-    component: HomeHRM,
-    children: [
-      {
-        path: '/hrmHome',
-        name: 'hrmHome',
-        component: () => import('../views/admin/home/Home'),
-      },
-      {
-        path:'/register',
-        name: 'register',
-        component: ()=> import('../views/admin/register/Register'),
-      }
-    ]
-  },
-  
+    {
+      path: '',
+      name: 'HomeHRM',
+      component: HomeHRM,
+      children: [
+        {
+          path: '/hrmHome',
+          name: 'hrmHome',
+          component: () => import('../views/admin/home/Home'),
+        },
+        {
+          path: '/admin/userList',
+          name: 'userList',
+          component: () => import('../views/admin/user/User'),
+        },
+        {
+          path:'/register',
+          name: 'register',
+          component: ()=> import('../views/admin/register/Register'),
+        }
+      ]
+    },
+    {
+      path: '/login',
+      name: 'Login',
+      component: () => import('../views/admin/login/Login'),
+    },
 ]
 
 const router = new VueRouter({
