@@ -35,14 +35,25 @@
         </div>
       </div>
     </div>
-    <DataTable :value="data" :paginator="true" :rows="10"
+
+    <DataTable :value="data" :selection.sync="selectedProducts" dataKey="id" :paginator="true" :rows="10"
                paginatorTemplate="CurrentPageReport FirstPageLink PrevPageLink PageLinks NextPageLink LastPageLink RowsPerPageDropdown"
                :rowsPerPageOptions="[10,20,50]"
-               currentPageReportTemplate="Showing {first} to {last} of {totalRecords}">
+               currentPageReportTemplate="Showing {first} to {last} of {totalRecords}" class="p-datatable-sm">
+      <Column selectionMode="multiple" headerStyle="width: 3rem"></Column>
       <Column field="name" header="Tên nhân viên"></Column>
       <Column field="email" header="Địa chỉ email"></Column>
       <Column field="phone" header="Số điện thoại"></Column>
       <Column field="roles_name" header="Quyền hạn"></Column>
+<!--      <Column v-for="colDef in nameColumn" :key="colDef[0]" :field="colDef[1]" :header="colDef[1]" :sortable="colDef.sortable">-->
+<!--      </Column>-->
+      <Column>
+        <template #body="slotProps">
+          <Button icon="pi pi-pencil" class="p-button-rounded p-button-success p-mr-2" @click="editProduct(slotProps.data)" />
+          <Button icon="pi pi-trash" class="p-button-rounded p-button-warning" @click="confirmDeleteProduct(slotProps.data)" />
+        </template>
+      </Column>
+
       <template #paginatorLeft>
         <Button type="button" icon="pi pi-refresh" class="p-button-text" />
       </template>
@@ -56,6 +67,7 @@
   export default {
     data() {
       return {
+        columns: null,
         userList: null,
         data: [
           {"name": "121212", "email": 2012, "roles_name": "Orange", "phone": "dsad231ff"},
@@ -82,9 +94,22 @@
         files: [],
         filename: '',
         messages: [],
+        nameColumn: [],
+        selectedProducts: null,
       }
     },
     methods: {
+      getListUser() {
+        fetch('http://localhost:8080/api/country/cmn/countryList')
+            .then(response => response.json())
+            .then(data => {
+              if(data.object != null) {
+                this.nameColumn(Object.keys(data.object[0]));
+                console.log(this.nameColumn);
+                this.userList = data.object;
+              }
+            });
+      },
       onFileChange(event) {
         this.files = event.target.files || event.dataTransfer.files;
         if (!this.files.length)
@@ -95,7 +120,7 @@
       }
     },
     created() {
-
+      this.getListUser();
     },
     mounted() {
     }
