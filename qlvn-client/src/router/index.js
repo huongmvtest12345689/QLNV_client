@@ -20,11 +20,7 @@ Vue.use(VueRouter)
           name: 'userList',
           component: () => import('../views/admin/user/User'),
         },
-        {
-          path:'/register',
-          name: 'register',
-          component: ()=> import('../views/admin/register/Register'),
-        }
+       
       ]
     },
     {
@@ -32,6 +28,11 @@ Vue.use(VueRouter)
       name: 'Login',
       component: () => import('../views/admin/login/Login'),
     },
+    {
+      path:'/register',
+      name: 'register',
+      component: ()=> import('../views/admin/register/Register'),
+    }
 ]
 
 const router = new VueRouter({

@@ -12,7 +12,9 @@ import ToastService from 'primevue/toastservice';
 import Toast from 'primevue/toast';
 import Fieldset from 'primevue/fieldset';
 import { ValidationProvider } from 'vee-validate/dist/vee-validate.full.esm';
+import { ValidationObserver} from 'vee-validate';
 Vue.component('ValidationProvider', ValidationProvider);
+Vue.component('ValidationObserver', ValidationObserver);
 /** Global Components */
 import './global.js'
 import i18n from './i18n.js'
