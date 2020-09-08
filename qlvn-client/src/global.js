@@ -5,7 +5,9 @@
  Version: 1.0
  Author: HuongMV
  ======================================================================================= */
- import './assets/vendor/fontawesome-free/css/all.min.css'
+import './assets/vendor/fontawesome-free/css/all.min.css'
 import 'bootstrap/dist/js/bootstrap.bundle.min.js'
 import 'jquery/dist/jquery.min.js'
 import 'jquery.easing/jquery.easing.min.js'
+import 'bootstrap/dist/css/bootstrap.css'
+import 'bootstrap-vue/dist/bootstrap-vue.css'

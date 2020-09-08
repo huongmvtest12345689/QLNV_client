@@ -11,6 +11,8 @@ import Toolbar from 'primevue/toolbar';
 import ToastService from 'primevue/toastservice';
 import Toast from 'primevue/toast';
 import Fieldset from 'primevue/fieldset';
+import ColorPicker from 'primevue/colorpicker'
+import JQuery from 'jquery'
 
 /** Global Components */
 import './global.js'
@@ -24,7 +26,9 @@ Vue.component('FileUpload', FileUpload);
 Vue.component('Toolbar', Toolbar);
 Vue.component('Toast', Toast);
 Vue.component('Fieldset', Fieldset);
+Vue.component('ColorPicker', ColorPicker);
 Vue.use(ToastService);
+Vue.prototype._$ = JQuery
 new Vue({
   router,
   store,

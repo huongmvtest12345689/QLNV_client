@@ -1,7 +1,8 @@
 <template>
     <!-- Page Wrapper -->
     <div id="wrapper">
-        <slide></slide>
+        <sidebar />
+        <config />
         <!-- Content Wrapper -->
         <div id="content-wrapper" class="d-flex flex-column">
             <!-- Main Content -->
@@ -20,14 +21,21 @@
     </div>
 </template>
 <script>
-import slideBar from '@/components/common/Sidebar'
+import sidebar from '@/components/common/Sidebar'
+import config from '@/components/common/layout_config/LayoutConfig'
 import navAdmin from '@/components/common/Nav'
 import footerAdmin from '@/components/common/Footer'
 export default {
     components: {
-        'slide': slideBar,
+        config,
+        sidebar,
         'nav-ad': navAdmin,
         'footer-ad': footerAdmin
+    },
+    data() {
+        return {
+            test: 'a'
+        }
     }
 }
 </script>
