@@ -12,13 +12,18 @@
                 </a>
 
                 <div class="layout-config-content">
-                    <ColorPicker v-model="text" @input="textColor" />
+                    <!-- <ColorPicker v-model="text" @input="textColor" /> -->
+                    <configNav />
                 </div>
             </div>
         </div>
 </template>
 <script>
+import configNav from './Config'
     export default {
+        components: {
+            configNav
+        },
         data() {
             return {
                 bg: '#4e73df',
