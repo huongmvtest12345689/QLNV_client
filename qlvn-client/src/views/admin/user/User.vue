@@ -39,10 +39,10 @@
                paginatorTemplate="CurrentPageReport FirstPageLink PrevPageLink PageLinks NextPageLink LastPageLink RowsPerPageDropdown"
                :rowsPerPageOptions="[10,20,50]"
                currentPageReportTemplate="Showing {first} to {last} of {totalRecords}">
-      <Column field="name" header="Tên nhân viên"></Column>
+      <Column field="username" header="Tên nhân viên"></Column>
       <Column field="email" header="Địa chỉ email"></Column>
       <Column field="phone" header="Số điện thoại"></Column>
-      <Column field="roles_name" header="Quyền hạn"></Column>
+      <Column field="roles_id" header="Quyền hạn"></Column>
       <template #paginatorLeft>
         <Button type="button" icon="pi pi-refresh" class="p-button-text" />
       </template>
@@ -53,32 +53,12 @@
   </div>
 </template>
 <script>
+import http from '../../../http-common';
   export default {
     data() {
       return {
         userList: null,
-        data: [
-          {"name": "121212", "email": 2012, "roles_name": "Orange", "phone": "dsad231ff"},
-          {"name": "đâsd", "email": 2011, "roles_name": "Black", "phone": "gwregre345"},
-          {"name": "Rezxczxcnault", "email": 2005, "roles_name": "Gray", "phone": "h354htr"},
-          {"name": "ádasda", "email": 2003, "roles_name": "Blue", "phone": "j6w54qgh"},
-          {"name": "Merzxczxcedes", "email": 1995, "roles_name": "phone", "vin": "hrtwy34"},
-          {"name": "Vozxczxzlvo", "email": 2005, "roles_name": "Black", "phone": "jejtyj"},
-          {"name": "Hzxczconda", "email": 2012, "roles_name": "Yellow", "phone": "g43gr"},
-          {"name": "Jaguar", "email": 2013, "roles_name": "Orange", "phone": "greg34"},
-          {"name": "Ford", "email": 2000, "roles_name": "Black", "phone": "h54hw5"},
-          {"name": "Fiat", "email": 2013, "roles_name": "Red", "phone": "245t2s"},
-          {"name": "Volkswagen", "email": 2012, "roles_name": "Orange", "phone": "dsad231ff"},
-          {"name": "cxczxc", "email": 2011, "roles_name": "Black", "phone": "gwregre345"},
-          {"name": "zxczxc", "email": 2005, "roles_name": "Gray", "phone": "h354htr"},
-          {"name": "BMW", "email": 2003, "roles_name": "Blue", "phone": "j6w54qgh"},
-          {"name": "czxczxc", "email": 1995, "roles_name": "phone", "vin": "hrtwy34"},
-          {"name": "Volvo", "email": 2005, "roles_name": "Black", "phone": "jejtyj"},
-          {"name": "zxczx", "email": 2012, "roles_name": "Yellow", "phone": "g43gr"},
-          {"name": "Jaguar", "email": 2013, "roles_name": "Orange", "phone": "greg34"},
-          {"name": "Fozxczxcrd", "email": 2000, "roles_name": "Black", "phone": "h54hw5"},
-          {"name": "Fiazxczxct", "email": 2013, "roles_name": "Red", "phone": "245t2s"}
-        ],
+        data: [],
         files: [],
         filename: '',
         messages: [],
@@ -87,17 +67,53 @@
     methods: {
       onFileChange(event) {
         this.files = event.target.files || event.dataTransfer.files;
+        let formData = new FormData();
+        console.log(this.files.length);
+        for(var i=0;i<this.files.length;i++){
+          let file = this.files[i];
+          formData.append('files', file);
+        }
+
+        console.log(formData.getAll("files"));
+        http.post( '/upload', formData, {
+          headers: {
+              'Content-Type': 'multipart/form-data'
+          },
+        }
+        ).then(
+         res =>{
+           console.log(res.data)
+         }
+        )
+        .catch(function(){
+        });
+        
         if (!this.files.length)
           this.$toast.add({severity:'error', summary: 'Thông báo lỗi', detail:'Upload file không thành công', life: 3000});
       },
       resetFileUpload(){
         this.files = [];
+      },
+      updateList(){
+        console.log('bbbbbbbbb')
+        http.get('/api/admin/user/all')
+        .then(res => {
+          console.log('==========')
+          console.log(res.data)
+          this.data = res.data.object;
+          });
       }
     },
     created() {
-
+      
     },
     mounted() {
+    //   http.get('/api/admin/user/all')
+    //     .then(res => {
+    //       this.data = res.data.object;
+    //       });
+    // }
+    this.updateList()
     }
   }
 </script>
