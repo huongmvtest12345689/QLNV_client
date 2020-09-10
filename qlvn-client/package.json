@@ -14,6 +14,7 @@
     "primevue": "^2.0.8",
     "vee-validate": "^3.3.9",
     "vue": "^2.6.11",
+    "vue-file-base64": "^1.0.2",
     "vue-i18n": "^8.21.0",
     "vue-router": "^3.2.0",
     "vuex": "^3.4.0"

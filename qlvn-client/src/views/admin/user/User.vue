@@ -61,46 +61,52 @@ import http from '../../../http-common';
         data: [],
         files: [],
         filename: '',
-        messages: [],
+        messages: []
       }
     },
     methods: {
-      onFileChange(event) {
+      async onFileChange(event) {
         this.files = event.target.files || event.dataTransfer.files;
         let formData = new FormData();
         console.log(this.files.length);
         for(var i=0;i<this.files.length;i++){
           let file = this.files[i];
-          formData.append('files', file);
+          let fileBase64 = await this.getBase64(file);
+          formData.append('files', fileBase64);
         }
 
         console.log(formData.getAll("files"));
-        http.post( '/upload', formData, {
+        http.post( '/uploadBase64', formData, {
           headers: {
               'Content-Type': 'multipart/form-data'
           },
         }
         ).then(
-         res =>{
-           console.log(res.data)
-         }
-        )
-        .catch(function(){
-        });
-        
+          this.updateList
+        );
         if (!this.files.length)
           this.$toast.add({severity:'error', summary: 'Thông báo lỗi', detail:'Upload file không thành công', life: 3000});
       },
       resetFileUpload(){
         this.files = [];
       },
-      updateList(){
-        console.log('bbbbbbbbb')
-        http.get('/api/admin/user/all')
+      getBase64(file) {
+        return new Promise((resolve, reject) => {
+          const reader = new FileReader();
+          reader.readAsDataURL(file);
+          reader.onload = () => resolve(reader.result);
+          reader.onerror = error => reject(error);
+        });
+      },
+     
+      async updateList(){
+       
+        await http.get('/api/admin/user/all')
         .then(res => {
-          console.log('==========')
+         
           console.log(res.data)
           this.data = res.data.object;
+          
           });
       }
     },
@@ -108,12 +114,7 @@ import http from '../../../http-common';
       
     },
     mounted() {
-    //   http.get('/api/admin/user/all')
-    //     .then(res => {
-    //       this.data = res.data.object;
-    //       });
-    // }
-    this.updateList()
+      this.updateList()
     }
   }
 </script>
