@@ -82,8 +82,12 @@ import http from '../../../http-common';
           },
         }
         ).then(
-          this.updateList
-        );
+          (res) =>{
+            alert(res.data.message);
+            
+          }
+        ).then(this.updateList);
+        
         if (!this.files.length)
           this.$toast.add({severity:'error', summary: 'Thông báo lỗi', detail:'Upload file không thành công', life: 3000});
       },
