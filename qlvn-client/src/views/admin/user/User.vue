@@ -22,7 +22,7 @@
             <span class="pi pi-upload p-button-icon p-button-icon-left"></span>
             <span class="p-button-label">Tải lên</span>
           </button>
-          <button v-if="files.length!=0" type="button" class="p-button p-component p-button-danger" @click="resetFileUpload">
+          <button v-if="files.length!=0" type="button" class="p-button p-component p-button-danger" @click="resetFiles">
             <span class="pi pi-times p-button-icon p-button-icon-left"></span>
             <span class="p-button-label">Cancel</span>
           </button>
@@ -54,19 +54,20 @@
 </template>
 <script>
 import http from '../../../http-common';
+import { mapGetters, mapActions } from 'vuex';
   export default {
-    data() {
-      return {
-        userList: null,
-        data: [],
-        files: [],
-        filename: '',
-        messages: []
-      }
-    },
+    // data() {
+    //   return {
+    //     userList: null,
+    //     data: [],
+    //     files: [],
+    //     filename: '',
+    //     messages: []
+    //   }
+    // },
     methods: {
       async onFileChange(event) {
-        this.files = event.target.files || event.dataTransfer.files;
+        this.setFiles(event.target.files || event.dataTransfer.files);
         let formData = new FormData();
         console.log(this.files.length);
         for(var i=0;i<this.files.length;i++){
@@ -86,14 +87,14 @@ import http from '../../../http-common';
             alert(res.data.message);
             
           }
-        ).then(this.updateList);
+        ).then(this.updateUserList);
         
         if (!this.files.length)
           this.$toast.add({severity:'error', summary: 'Thông báo lỗi', detail:'Upload file không thành công', life: 3000});
       },
-      resetFileUpload(){
-        this.files = [];
-      },
+      // resetFileUpload(){
+      //   this.files = [];
+      // },
       getBase64(file) {
         return new Promise((resolve, reject) => {
           const reader = new FileReader();
@@ -102,23 +103,22 @@ import http from '../../../http-common';
           reader.onerror = error => reject(error);
         });
       },
-     
-      async updateList(){
+      ...mapActions(['setFiles','resetFiles','updateUserList']),
+      // async updateList(){
        
-        await http.get('/api/admin/user/all')
-        .then(res => {
-         
-          console.log(res.data)
-          this.data = res.data.object;
+      //   await http.get('/api/admin/user/all')
+      //   .then(res => {
+      //     this.data = res.data.object;
           
-          });
-      }
+      //     });
+      // }
     },
+    computed: mapGetters(['userList','data','files','filename','messages']),
     created() {
       
     },
     mounted() {
-      this.updateList()
+      this.updateUserList()
     }
   }
 </script>
