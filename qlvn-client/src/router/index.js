@@ -1,6 +1,7 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
 import HomeHRM from '../views/admin/Index'
+import ChangePassoword from '../views/admin/change_password/ChangePassword'
 
 Vue.use(VueRouter)
 
@@ -26,6 +27,11 @@ Vue.use(VueRouter)
       path: '/login',
       name: 'Login',
       component: () => import('../views/admin/login/Login'),
+    },
+    {
+      path: '/changePassword',
+      name: 'ChangePassword',
+      component: ChangePassoword
     },
 ]
 

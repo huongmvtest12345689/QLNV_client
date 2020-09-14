@@ -13,6 +13,10 @@ import Toast from 'primevue/toast';
 import Fieldset from 'primevue/fieldset';
 import ColorPicker from 'primevue/colorpicker'
 import JQuery from 'jquery'
+import { ValidationProvider } from 'vee-validate/dist/vee-validate.full.esm';
+import { ValidationObserver} from 'vee-validate';
+Vue.component('ValidationProvider', ValidationProvider);
+Vue.component('ValidationObserver', ValidationObserver);
 
 /** Global Components */
 import './global.js'
