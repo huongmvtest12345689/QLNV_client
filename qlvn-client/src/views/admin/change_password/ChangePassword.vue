@@ -81,35 +81,28 @@
 
 <script>
 import Api from '../../../api'
+import router from '../../../router'
+import { mapGetters, mapActions } from 'vuex';
   export default {
     name: 'ChangePassword',
-    data () {
-      return {
-        new_password : "",
-        curr_password: "",
-        confirm_password: "",
-      }
-    },
     methods:{
-        reset: function(){
-            this.$refs.form.reset()
-            this.new_password = ""
-            this.curr_password= ""
-            this.confirm_password= ""
-            this.errors.clear()  
-        },
         changePassword: function(){
         // add api here 
         Api.apiParamPost("http://localhost:8088/update",{
           "id":1,// change while userid of session is existed.
-          "password": this.password,
+          "password": this.curr_password,
           "newPassword": this.new_password
         }).then(res=>{
+        if(res.data.status !=200){
           alert(res.data.message);
-        });
-            
+        }else{
+          router.push({ name: 'Login'});
         }
-    }
+        });
+        },
+        ...mapActions(['resetChangePassForm']),
+    },
+    computed: mapGetters(['curr_password','new_password','confirm_password']),
   }
 </script>
 
