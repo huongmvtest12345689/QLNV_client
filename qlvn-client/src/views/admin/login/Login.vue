@@ -90,13 +90,25 @@
 
 <script>
 import { mapActions, mapState,mapGetters} from 'vuex'
+import router from '../../../router'
+import Api from '../../../api'
   export default {
     name: 'Login',
     methods:{
       login: function(){
-        alert(this.email);
-        alert(this.password);
-        alert(this.checked)
+        console.log(this.email)
+        Api.apiParamPost("http://localhost:8088/api/login",{
+          "username": this.email,
+          "password": this.password,
+        }).then(res=>{
+        if(res.data.status !=200){
+          alert(res.data.message);
+          
+        }else{
+          alert(res.data.object);
+          router.push({ name: 'hrmHome'});
+        }
+        })
       },
       ...mapActions('login',["setEmail",'setPassword','rememberMe'])
     },  
