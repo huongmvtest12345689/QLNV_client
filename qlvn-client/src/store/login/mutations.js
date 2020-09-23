@@ -8,6 +8,9 @@ export default {
     },
     [types.SET_PASSWORD](state,payload) {
         state.password = payload
+    },
+    [types.SET_EMAIL_RESET](state,payload) {
+        state.emailReset = payload
     }
 
 }

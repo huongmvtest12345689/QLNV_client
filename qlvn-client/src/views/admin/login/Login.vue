@@ -76,15 +76,26 @@
            
             <p class="mb-4">We get it, stuff happens. Just enter your email address below and we'll send you a link to reset your password!</p>
           </div>
-          <form class="user">
+          <ValidationObserver v-slot="{ handleSubmit }">
+          <form class="user" v-on:submit.prevent="handleSubmit(sendMail)" >
             <div class="form-group">
-              <input v-model="emailReset" type="email" class="form-control form-control-user" aria-describedby="emailHelp" placeholder="Enter Email Address...">
-            </div>
-            
-            <a href="login.html" class="btn btn-primary btn-user btn-block">
-              Reset Password
-            </a>
+              <ValidationProvider rules="required|email" v-slot="{  errors,failedRules   }" >
+                 <input :value="emailReset" @input="setEmailReset(($event.target.value))" type="email" class="form-control form-control-user" name = "email" aria-describedby="emailHelp" placeholder="Enter Email Address...">
+                 <ul>
+                     <li v-for="error in errors"  v-bind:key="error">
+                         <div v-if="failedRules.required">* Please enter your Email Address.</div>
+                         <div v-if="failedRules.email">* Invalid email.</div>
+    
+                     </li>
+                 </ul>
+              </ValidationProvider>       
+             </div>
+            <input type = "submit" class="btn btn-primary btn-user btn-block" value = "Reset Password">
+           
           </form>
+          </ValidationObserver>
+          
+
         </div>
       </div>
     </div>
@@ -119,9 +130,23 @@ import Api from '../../../api'
           router.push({ name: 'hrmHome'});
         }
         })
-        
       },
-      ...mapActions('login',["setEmail",'setPassword','rememberMe'])
+      sendMail: function(){
+        Api.apiParamGet("http://localhost:8088/resetPassword/sendMail",{
+           params: { 'email': this.emailReset} ,
+        }).then(res =>{
+          if(res.data.status ==200){
+            console.log(res.data.message)
+            this.$cookies.set('reset_pass_id',res.data.object,-1)
+            console.log(this.$cookies.get('reset_pass_id'))
+            
+            window.location.href = 'http://localhost:8080/resetPassword'
+          }else{
+            alert(res.data.message)
+          }
+        });
+      },
+      ...mapActions('login',["setEmail",'setPassword','rememberMe','setEmailReset'])
     },  
      computed: {
        ...mapState('login',["email","password","checked","emailReset"]),
@@ -129,6 +154,7 @@ import Api from '../../../api'
      },
      beforeCreate() {
             if(this.$cookies.get('user')){
+              
               router.push({ name: 'hrmHome'});
             }
         }

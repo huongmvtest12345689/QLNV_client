@@ -9,5 +9,8 @@ export default {
     },
     setPassword({commit},data){
         commit(types.SET_PASSWORD,data)
+    },
+    setEmailReset({commit},data){
+        commit(types.SET_EMAIL_RESET,data)
     }
 }

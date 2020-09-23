@@ -2,6 +2,7 @@ import Vue from 'vue'
 import VueRouter from 'vue-router'
 import HomeHRM from '../views/admin/Index'
 import ChangePassoword from '../views/admin/change_password/ChangePassword'
+import ResetPassword from '../views/admin/change_password/ResetPassword'
 import Register from '../views/admin/register/Register'
 
 Vue.use(VueRouter)
@@ -38,6 +39,11 @@ Vue.use(VueRouter)
       path: '/register',
       name: 'Register',
       component: Register
+    },
+    {
+      path: '/resetPassword',
+      name: 'ResetPassword',
+      component: ResetPassword
     }
 ]
 
