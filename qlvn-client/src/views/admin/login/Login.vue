@@ -87,7 +87,6 @@
 <script>
   import api from "@/api";
   import {email, required} from "vuelidate/lib/validators";
-  // import { authenticationService } from "@/common/authentication.service";
   export default {
     name: 'Login',
     data () {
