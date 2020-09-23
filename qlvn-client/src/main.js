@@ -15,8 +15,10 @@ import ColorPicker from 'primevue/colorpicker'
 import JQuery from 'jquery'
 
 /** Global Components */
+import ApiService from '@/common/ApiService'
 import './global.js'
 import i18n from './i18n.js'
+import Vuelidate from 'vuelidate';
 Vue.config.productionTip = false
 Vue.component('DataTable', DataTable);
 Vue.component('Column', Column);
@@ -27,8 +29,13 @@ Vue.component('Toolbar', Toolbar);
 Vue.component('Toast', Toast);
 Vue.component('Fieldset', Fieldset);
 Vue.component('ColorPicker', ColorPicker);
+
 Vue.use(ToastService);
+Vue.use(Vuelidate);
 Vue.prototype._$ = JQuery
+
+ApiService.init();
+
 new Vue({
   router,
   store,

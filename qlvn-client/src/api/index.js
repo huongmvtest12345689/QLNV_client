@@ -10,6 +10,16 @@ export default {
             })
         })
     },
+    apiParamPut (url, data) {
+        return new Promise((resolve, reject) => {
+            console.log('apiParamPost')
+            ApiService.put(url, data).then(response => {
+                resolve(response)
+            }).catch(error => {
+                reject(error)
+            })
+        })
+    },
     apiParamGet (url, data) {
         return new Promise((resolve, reject) => {
             console.log('apiParamGet')
