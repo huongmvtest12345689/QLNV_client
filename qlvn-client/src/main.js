@@ -15,6 +15,8 @@ import ColorPicker from 'primevue/colorpicker'
 import JQuery from 'jquery'
 import { ValidationProvider } from 'vee-validate/dist/vee-validate.full.esm';
 import { ValidationObserver} from 'vee-validate';
+import VueCookies from 'vue-cookies'
+
 
 Vue.component('ValidationProvider', ValidationProvider);
 Vue.component('ValidationObserver', ValidationObserver);
@@ -33,6 +35,7 @@ Vue.component('Toast', Toast);
 Vue.component('Fieldset', Fieldset);
 Vue.component('ColorPicker', ColorPicker);
 Vue.use(ToastService);
+Vue.use(VueCookies)
 Vue.prototype._$ = JQuery
 new Vue({
   router,

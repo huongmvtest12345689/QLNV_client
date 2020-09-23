@@ -20,7 +20,7 @@
                     <form class="user" v-on:submit.prevent="handleSubmit(changePassword)">
                       <div class="form-group">
                         <ValidationProvider rules="required|max:8|min:3" v-slot="{  errors,failedRules  }" name="'current_pass'" >
-                            <input v-model="curr_password" type="password" class="form-control form-control-user" placeholder="Enter Current Password ...">
+                            <input :value="currPassword" @input="setCurrPassword(($event.target.value))"  type="password" class="form-control form-control-user" placeholder="Enter Current Password ...">
                             <ul>
                                 <li v-for="error in errors"  v-bind:key="error">
                                     <div v-if="failedRules.required">* Please enter your Current Password..</div>
@@ -33,7 +33,7 @@
                       </div>
                       <div class="form-group">
                         <ValidationProvider rules="required|max:8|min:3" v-slot="{  errors,failedRules   }" name="'new_pass'" vid = "new_pass" >
-                            <input v-model ="new_password" type="password" class="form-control form-control-user" placeholder="Enter New Password ...">
+                            <input :value="newPassword" @input="setNewPassword(($event.target.value))" type="password" class="form-control form-control-user" placeholder="Enter New Password ...">
                             <ul>
                                 <li v-for="error in errors"  v-bind:key="error">
                                     <div v-if="failedRules.required">* Please enter your New Password..</div>
@@ -45,7 +45,7 @@
                       </div>
                       <div class="form-group">
                         <ValidationProvider rules="required|confirmed:new_pass" v-slot="{ errors,failedRules  }" name="'new_pass'" >
-                            <input v-model="confirm_password" type="password" class="form-control form-control-user" placeholder="Confirm New Password ...">
+                            <input :value="confirmPassword" @input="setConfirmPassword(($event.target.value))" type="password" class="form-control form-control-user" placeholder="Confirm New Password ...">
                             <ul>
                                 <li v-for="error in errors"  v-bind:key="error">
                                 
@@ -80,18 +80,25 @@
 </template>
 
 <script>
-import Api from '../../../api'
+import axios from 'axios'
 import router from '../../../router'
-import { mapGetters, mapActions } from 'vuex';
+import { mapGetters, mapActions,mapState } from 'vuex';
   export default {
     name: 'ChangePassword',
     methods:{
         changePassword: function(){
         // add api here 
-        Api.apiParamPost("http://localhost:8088/update",{
-          "id":1,// change while userid of session is existed.
-          "password": this.curr_password,
-          "newPassword": this.new_password
+        let user = this.$cookies.get('user')
+        console.log(user.id)
+        console.log(user.token)
+        axios.post("http://localhost:8088/update",{
+          "id":user.id,
+          "password": this.currPassword,
+          "newPassword": this.newPassword
+        },{
+          headers: {
+            'Authorization': user.token
+          }
         }).then(res=>{
         if(res.data.status !=200){
           alert(res.data.message);
@@ -100,9 +107,17 @@ import { mapGetters, mapActions } from 'vuex';
         }
         });
         },
-        ...mapActions(['resetChangePassForm']),
+        ...mapActions('change_password',['setCurrPassword','setNewPassword','setConfirmPassword']),
     },
-    computed: mapGetters(['curr_password','new_password','confirm_password']),
+    computed: {
+       ...mapState('change_password',["currPassword","newPassword","confirmPassword"]),
+       ...mapGetters('change_password',['currPassword','newPassword','confirmPassword'])
+     },
+     beforeCreate() {
+        if(!this.$cookies.get('user')){
+            router.push({ name: 'Login'});
+        }
+      }
   }
 </script>
 

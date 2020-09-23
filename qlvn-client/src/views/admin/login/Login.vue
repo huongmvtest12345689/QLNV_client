@@ -15,7 +15,6 @@
                   <div class="p-5">
                     <div class="text-center">
                       <h1 class="h4 text-gray-900 mb-4">Welcome Back!</h1>
-                      <p>{{this.email}}</p>
                     </div>
                     <ValidationObserver v-slot="{ handleSubmit }" ref="form">
                     <form class="user" v-on:submit.prevent="handleSubmit(login)">
@@ -57,7 +56,9 @@
                     </ValidationObserver>
                     <hr>
                     <div class="text-center">
-                      <a class="small" href="#" data-toggle="modal" data-target="#forgotPasswordModal">Forgot Password?</a>
+                      <router-link to="/register" tag="a"  class="small">Create new account !</router-link><br>
+                      <a class="small" href="#" data-toggle="modal" data-target="#forgotPasswordModal">Forgot Password?</a><br>
+                      
                     </div>
                   </div>
                 </div>
@@ -72,12 +73,14 @@
         <div class="modal-content forgot-pass-modal">
           <div class="text-center">
             <h1 class="h4 text-gray-900 mb-2">Forgot Your Password?</h1>
+           
             <p class="mb-4">We get it, stuff happens. Just enter your email address below and we'll send you a link to reset your password!</p>
           </div>
           <form class="user">
             <div class="form-group">
               <input v-model="emailReset" type="email" class="form-control form-control-user" aria-describedby="emailHelp" placeholder="Enter Email Address...">
             </div>
+            
             <a href="login.html" class="btn btn-primary btn-user btn-block">
               Reset Password
             </a>
@@ -96,26 +99,39 @@ import Api from '../../../api'
     name: 'Login',
     methods:{
       login: function(){
+        
         console.log(this.email)
         Api.apiParamPost("http://localhost:8088/api/login",{
           "username": this.email,
-          "password": this.password,
+          "password": this.password,  
         }).then(res=>{
         if(res.data.status !=200){
+          
           alert(res.data.message);
           
         }else{
-          alert(res.data.object);
+          console.log(res.data.message )
+          this.$cookies.set('user',{
+            'id':res.data.object.id,
+            'token':res.data.object.token
+            },res.data.object.tokenEnd)
+        
           router.push({ name: 'hrmHome'});
         }
         })
+        
       },
       ...mapActions('login',["setEmail",'setPassword','rememberMe'])
     },  
      computed: {
        ...mapState('login',["email","password","checked","emailReset"]),
        ...mapGetters('login',['email','password','checked','emailReset'])
-     }
+     },
+     beforeCreate() {
+            if(this.$cookies.get('user')){
+              router.push({ name: 'hrmHome'});
+            }
+        }
   }
 </script>
 

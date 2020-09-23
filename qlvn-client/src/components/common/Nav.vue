@@ -206,10 +206,11 @@
                         Activity Log
                     </a>
                     <div class="dropdown-divider"></div>
-                    <a class="dropdown-item" data-toggle="modal">
+                    
+                    <button @click="logout()" class="dropdown-item" data-toggle="modal">
                         <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
                         Logout
-                    </a>
+                    </button>
                 </div>
             </li>
 
@@ -219,9 +220,16 @@
 </template>
 <script>
 import country from '../../components/country/country'
+import router from '../../router';
 export default {
     components: {
         'country-dropdown': country
+    },
+    methods:{
+        logout: function(){
+            this.$cookies.remove('user');
+            router.push({ name: 'Login'});
+        }
     }
 }
 </script>
