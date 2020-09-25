@@ -188,7 +188,7 @@
             <!-- Nav Item - User Information -->
             <li class="nav-item dropdown no-arrow">
                 <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    <span class="mr-2 d-none d-lg-inline text-gray-600 small">Nguyen Van A</span>
+                    <span class="mr-2 d-none d-lg-inline text-gray-600 small">{{username}}</span>
                     <img class="img-profile rounded-circle" src="https://source.unsplash.com/QAB-WJcbgJk/60x60">
                 </a>
                 <!-- Dropdown - User Information -->
@@ -206,7 +206,7 @@
                         Activity Log
                     </a>
                     <div class="dropdown-divider"></div>
-                    <a class="dropdown-item" data-toggle="modal">
+                    <a class="dropdown-item" data-toggle="modal" @click="logout">
                         <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
                         Logout
                     </a>
@@ -219,9 +219,32 @@
 </template>
 <script>
 import country from '../../components/country/country'
+import api from "@/api";
 export default {
     components: {
         'country-dropdown': country
+    },
+    data () {
+      return {
+        username: "",
+      }
+    },
+    methods: {
+      logout() {
+        let url = "http://localhost:8080/api/user/logout";
+        api.apiNotParamGet(url).then(res =>{
+          if (res.data.status === 200) {
+            this.$store.dispatch('logout');
+            this.$router.push("/login")
+          }
+        })
+      },
+      loadInfoUser() {
+        this.username = this.$store.getters.getUser.name;
+      }
+    },
+    created() {
+      this.loadInfoUser();
     }
 }
 </script>

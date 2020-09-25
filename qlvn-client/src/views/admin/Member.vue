@@ -6,7 +6,7 @@
   </div>
 </template>
 <script>
-
+import api from "@/api";
 export default {
   name: 'Member',
   data () {
@@ -17,16 +17,13 @@ export default {
   methods: {
     logout() {
       let url = "http://localhost:8080/api/user/logout";
-      fetch(url, {
-        method: "GET",
-        credentials: 'include',
+      api.apiNotParamGet(url).then(res =>{
+        if (res.data.status === 200) {
+          this.$store.dispatch('logout');
+          this.$router.push("/login")
+        }
       })
-          .then(response => response.json())
-          .then(data => {
-            console.log('Request succeeded with JSON response', data);
-          })
     },
-
     loadData() {
       let url = "http://localhost:8080/api/user/random";
       fetch(url, {

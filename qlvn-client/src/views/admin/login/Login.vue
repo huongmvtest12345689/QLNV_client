@@ -87,6 +87,9 @@
 <script>
   import api from "@/api";
   import {email, required} from "vuelidate/lib/validators";
+  // import {
+  //   getAuthenticatedUser
+  // } from "@/common/Utils";
   export default {
     name: 'Login',
     data () {
@@ -141,14 +144,12 @@
           password : this.login.password,
         }
         api.apiParamPost(url, dataForm).then(res => {
-          if (res.status == 200) {
-            // let url_api = "http://localhost:8080/api/user/random";
-            // api.apiNotParamGet(url_api).then(data => {
-            //   console.log(data);
-            // })
-            console.log(res.data.object);
-            this.$router.push({ name: 'Member' })
-            // authenticationService.currUser(res.data.object);
+          if (res.data.status === 200) {
+            // console.log(res)
+            // this.$router.push({ name: 'Member' })
+            this.$store.dispatch('loadUser', res)
+            // getAuthenticatedUser();
+            this.$router.push({ name: 'HomeHRM' })
           }
         })
       }

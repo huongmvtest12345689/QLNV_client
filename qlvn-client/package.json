@@ -10,6 +10,7 @@
   "dependencies": {
     "bootstrap-vue": "^2.16.0",
     "core-js": "^3.6.5",
+    "js-cookie": "^2.2.1",
     "primeflex": "^2.0.0",
     "primeicons": "^4.0.0",
     "primevue": "^2.0.8",

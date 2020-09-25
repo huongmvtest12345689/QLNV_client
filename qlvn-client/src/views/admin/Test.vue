@@ -16,14 +16,13 @@ export default {
   },
   methods: {
     loadData() {
-      let url = "http://localhost:8080/api/admin/random";
+      let url = "http://localhost:8080/api/member/random";
       fetch(url, {
         method: "GET",
         credentials: 'include',
       })
           .then(response => response.json())
           .then(data => {
-            document.cookie = data.name +'=; Path=/; Expires=Thu, 01 Jan 1970 00:00:01 GMT;';
             console.log('Request succeeded with JSON response', data);
           })
     }
